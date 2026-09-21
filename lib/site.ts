@@ -12,10 +12,10 @@ export const siteConfig = {
 
 export const navigation = [
   { label: "Início", href: "#inicio" },
+  { label: "Soluções", href: "#solucoes" },
+  { label: "Diferenciais", href: "#diferenciais" },
   { label: "Empresa", href: "#empresa" },
-  { label: "Serviços", href: "#servicos" },
-  { label: "Produtos", href: "#produtos" },
-  { label: "Atuação", href: "#atuacao" },
+  { label: "Galeria", href: "#galeria" },
   { label: "Contato", href: "#contato" },
 ];
 
