@@ -13,20 +13,26 @@ import {
   Blocks,
   Building2,
   Check,
+  CircleDollarSign,
   Clock3,
   Factory,
+  HardHat,
   Home,
   MapPin,
   MessageCircle,
   MoveUpRight,
-  Ruler,
-  ShieldCheck,
+  PencilRuler,
+  Recycle,
+  Scissors,
+  TrendingUp,
+  Users,
   Warehouse,
 } from "lucide-react";
 import { Header } from "./Header";
 import { Logo } from "./Logo";
 import { ContactForm } from "./ContactForm";
 import { Gallery } from "./Gallery";
+import { CompanyVideo } from "./CompanyVideo";
 import { navigation, siteConfig, whatsappHref } from "@/lib/site";
 
 if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -60,13 +66,63 @@ const products = [
   "Tesouras estruturais",
   "Contraventamentos",
   "Pisos intertravados",
-  "Outras peças sob consulta",
+  "Peças especiais sob projeto",
+];
+
+const specialSolutions = [
+  {
+    title: "Projetos e peças especiais",
+    text: "Desenvolvemos e produzimos nossas próprias formas para atender peças especiais e projetos fora do padrão.",
+    icon: PencilRuler,
+  },
+  {
+    title: "Produção dentro da obra",
+    text: "Conforme as características do projeto, podemos instalar equipamentos no canteiro e produzir as peças na própria construção.",
+    icon: HardHat,
+  },
+  {
+    title: "Casas para projetos MCMV",
+    text: "Soluções habitacionais com formas pré-fabricadas aplicáveis a empreendimentos do programa Minha Casa, Minha Vida.",
+    icon: Home,
+  },
+  {
+    title: "Corte e dobra de aço",
+    text: "Beneficiamento de aço e preparação da estrutura de ferro para atendimento terceirizado.",
+    icon: Scissors,
+  },
 ];
 
 const benefits = [
-  { title: "Solução sob medida", text: "Cada estrutura parte da necessidade real do projeto.", icon: Ruler },
-  { title: "Construção eficiente", text: "Organização e agilidade para a obra continuar avançando.", icon: Clock3 },
-  { title: "Base resistente", text: "Componentes pensados para formar sistemas sólidos e confiáveis.", icon: ShieldCheck },
+  {
+    highlight: "Menos etapas no canteiro",
+    title: "Redução de mão de obra",
+    text: "A execução pré-moldada elimina etapas artesanais e reduz a necessidade de equipes durante a fase estrutural.",
+    icon: Users,
+  },
+  {
+    highlight: "Até ≈ 50% no estrutural",
+    title: "Menos tempo de obra",
+    text: "Com projeto bem elaborado, uma fase estrutural prevista para seis meses pode ser concluída em cerca de três a quatro meses.",
+    icon: Clock3,
+  },
+  {
+    highlight: "Custos otimizados",
+    title: "Redução do custo da obra",
+    text: "O prazo menor ajuda a reduzir gastos com salários, transporte, alimentação, materiais, encargos e energia.",
+    icon: CircleDollarSign,
+  },
+  {
+    highlight: "Praticamente zero",
+    title: "Menos desperdício",
+    text: "A pré-fabricação reduz perdas nas etapas de beneficiamento de aço, concreto e alvenaria substituídas pelo sistema.",
+    icon: Recycle,
+  },
+  {
+    highlight: "Mais eficiência",
+    title: "Maior margem de lucro",
+    text: "A combinação entre agilidade, controle e redução de custos pode melhorar significativamente o resultado financeiro do projeto.",
+    icon: TrendingUp,
+  },
 ];
 
 export function LandingPage() {
@@ -158,9 +214,10 @@ export function LandingPage() {
 
         <section className="compact-intro" aria-label="Resumo da atuação">
           <div className="shell compact-intro__grid stagger-group">
-            <div><Factory aria-hidden="true" /><span>Projetos</span><strong>Residenciais, comerciais e industriais</strong></div>
+            <div><Factory aria-hidden="true" /><span>Experiência</span><strong>Mais de 15 anos no setor</strong></div>
+            <div><Building2 aria-hidden="true" /><span>Construções</span><strong>Galpões, prédios e casas</strong></div>
+            <div><Blocks aria-hidden="true" /><span>Fabricação</span><strong>Peças e estruturas pré-moldadas</strong></div>
             <div><MapPin aria-hidden="true" /><span>Atuação</span><strong>Paraíba e Rio Grande do Norte</strong></div>
-            <div><Check aria-hidden="true" /><span>Soluções</span><strong>Estruturas e peças pré-moldadas</strong></div>
           </div>
         </section>
 
@@ -182,6 +239,21 @@ export function LandingPage() {
               <div><span>Peças pré-moldadas</span><strong>Componentes para sustentar e organizar sua obra.</strong></div>
               <ul>{products.map((product) => <li key={product}><Check size={15} aria-hidden="true" />{product}</li>)}</ul>
             </div>
+            <div className="special-solutions">
+              <div className="special-solutions__heading reveal">
+                <span>Capacidade sob medida</span>
+                <h3>Do projeto especial à produção no canteiro.</h3>
+              </div>
+              <div className="special-solutions__grid stagger-group">
+                {specialSolutions.map(({ icon: Icon, ...solution }, index) => (
+                  <article key={solution.title}>
+                    <div><span>0{index + 1}</span><Icon aria-hidden="true" /></div>
+                    <h4>{solution.title}</h4>
+                    <p>{solution.text}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
@@ -191,19 +263,33 @@ export function LandingPage() {
 
         <section className="benefits-compact dark-section section" id="diferenciais" aria-labelledby="benefits-title">
           <div className="shell">
-            <div className="benefits-compact__heading"><span className="eyebrow eyebrow--light reveal">Por que escolher a Blue</span><h2 id="benefits-title" className="section-title section-title--light reveal">Clareza para planejar.<br />Estrutura para executar.</h2></div>
-            <div className="benefits-compact__grid stagger-group">
-              {benefits.map(({ icon: Icon, ...benefit }, index) => <article key={benefit.title}><span>0{index + 1}</span><Icon aria-hidden="true" /><h3>{benefit.title}</h3><p>{benefit.text}</p></article>)}
+            <div className="benefits-compact__heading">
+              <span className="eyebrow eyebrow--light reveal">Vantagens dos pré-moldados</span>
+              <h2 id="benefits-title" className="section-title section-title--light reveal">Uma obra mais ágil,<br />enxuta e eficiente.</h2>
+              <p className="benefits-compact__intro reveal">A industrialização da estrutura reduz etapas no canteiro e cria condições para executar com mais controle.</p>
             </div>
+            <div className="benefits-compact__grid stagger-group">
+              {benefits.map(({ icon: Icon, ...benefit }, index) => (
+                <article key={benefit.title}>
+                  <div className="benefit-card__top"><span>0{index + 1}</span><strong>{benefit.highlight}</strong></div>
+                  <Icon aria-hidden="true" />
+                  <h3>{benefit.title}</h3>
+                  <p>{benefit.text}</p>
+                </article>
+              ))}
+            </div>
+            <p className="benefits-compact__note reveal">Prazos, economias e resultados variam conforme o projeto, o escopo, a logística e as condições de execução.</p>
           </div>
         </section>
 
         <section className="about-compact section" id="empresa" aria-labelledby="about-title">
           <div className="shell about-compact__grid">
             <div className="about-compact__visual reveal"><Image src="/gallery/montagem-estrutura-01.jpg" alt="Equipe trabalhando na montagem de uma estrutura pré-moldada" fill sizes="(max-width: 900px) 100vw, 50vw" /></div>
-            <div className="about-compact__copy"><span className="eyebrow reveal">Sobre a Blue</span><h2 id="about-title" className="section-title reveal">Precisão em cada peça.<br /><span>Confiança em toda a estrutura.</span></h2><p className="lead reveal">A Blue Premoldados reúne estruturas, peças de concreto e execução especializada para atender diferentes necessidades construtivas.</p><p className="reveal">Atuamos na Paraíba e no Rio Grande do Norte com foco em qualidade, eficiência e atendimento próximo.</p><a className="text-link reveal" href="#galeria">Ver estruturas em obra <ArrowRight size={17} /></a></div>
+            <div className="about-compact__copy"><span className="eyebrow reveal">Sobre a Blue</span><h2 id="about-title" className="section-title reveal">Precisão em cada peça.<br /><span>Confiança em toda a estrutura.</span></h2><p className="lead reveal">Há mais de 15 anos, a Blue Premoldados atua na fabricação de peças, em construções e em serviços especializados para diferentes necessidades construtivas.</p><p className="reveal">Atendemos projetos na Paraíba e no Rio Grande do Norte com foco em qualidade, eficiência e atendimento próximo.</p><a className="text-link reveal" href="#galeria">Ver estruturas em obra <ArrowRight size={17} /></a></div>
           </div>
         </section>
+
+        <CompanyVideo />
 
         <section className="contact section" id="contato" aria-labelledby="contact-title">
           <div className="shell contact-grid">
