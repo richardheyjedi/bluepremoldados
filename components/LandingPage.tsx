@@ -245,7 +245,7 @@ export function LandingPage() {
                 <div className="hero-presence__item"><Building2 aria-hidden="true" /><span>Sedes</span><strong>Parnamirim/RN e Cabedelo/PB</strong></div>
               </div>
               <div className="hero-actions hero-animate">
-                <a className="button button--yellow" href={whatsappHref()} target="_blank" rel="noopener noreferrer"><WhatsAppIcon size={19} /> Falar no WhatsApp</a>
+                <a className="button button--whatsapp" href={whatsappHref()} target="_blank" rel="noopener noreferrer"><WhatsAppIcon size={19} /> Falar no WhatsApp</a>
                 <a className="button button--ghost" href="#solucoes">Conhecer soluções <ArrowDown size={18} /></a>
               </div>
             </div>

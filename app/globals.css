@@ -49,6 +49,8 @@ img { display: block; }
 .button:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
 .button--yellow { background: var(--yellow); color: var(--navy); }
 .button--yellow:hover { background: #ffd072; }
+.button--whatsapp { background: #25d366; color: var(--white); }
+.button--whatsapp:hover { background: #1fbd5a; }
 .button--ghost { background: rgba(255,255,255,.03); border-color: rgba(255,255,255,.34); color: var(--white); }
 .button--ghost:hover { border-color: var(--cyan); background: rgba(4,168,198,.12); }
 .button--navy { background: var(--navy); color: var(--white); }
