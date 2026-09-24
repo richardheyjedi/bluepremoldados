@@ -15,7 +15,6 @@ import {
   Check,
   CircleDollarSign,
   Clock3,
-  Factory,
   HardHat,
   Home,
   MapPin,
@@ -62,16 +61,51 @@ const services = [
 ];
 
 const products = [
-  "Pilares pré-moldados",
-  "Tesouras estruturais",
-  "Contraventamentos",
+  "Tubos de concreto",
   "Pisos intertravados",
+  "Meio-fio pré-moldado",
+  "Muros pré-moldados",
+  "Lixeiras e bancos pré-moldados",
+  "Blocos pré-moldados",
+  "Tesouras gigantes",
+  "Pilares e contraventamentos",
   "Peças especiais sob projeto",
+];
+
+const solutionGroups = [
+  {
+    title: "Produtos",
+    icon: Blocks,
+    items: [
+      "Tubos",
+      "Pisos intertravados",
+      "Meio-fio",
+      "Muros",
+      "Lixeiras e bancos pré-moldados",
+      "Blocos",
+      "Tesouras gigantes",
+    ],
+  },
+  {
+    title: "Construções",
+    icon: Building2,
+    items: ["Galpões", "Prédios", "Casas pré-moldadas", "Condomínios logísticos"],
+  },
+  {
+    title: "Serviços",
+    icon: HardHat,
+    items: [
+      "Terceirização de peças pré-moldadas",
+      "Fabricação dentro da obra",
+      "Formas para pré-moldados",
+      "Corte e dobra de aço — vergalhões e chapas",
+    ],
+  },
 ];
 
 const specialSolutions = [
   {
-    title: "Projetos e peças especiais",
+    title: "Formas e peças especiais",
     text: "Desenvolvemos e produzimos nossas próprias formas para atender peças especiais e projetos fora do padrão.",
     icon: PencilRuler,
   },
@@ -87,7 +121,7 @@ const specialSolutions = [
   },
   {
     title: "Corte e dobra de aço",
-    text: "Beneficiamento de aço e preparação da estrutura de ferro para atendimento terceirizado.",
+    text: "Beneficiamento de vergalhões e chapas, com preparação da estrutura de ferro para atendimento terceirizado.",
     icon: Scissors,
   },
 ];
@@ -144,6 +178,7 @@ export function LandingPage() {
         .from(".hero-kicker", { y: 14, autoAlpha: 0, duration: 0.4 })
         .from(".hero-title-line", { yPercent: 108, duration: 0.72, stagger: 0.08 }, "-=0.15")
         .from(".hero-copy", { y: 18, autoAlpha: 0, duration: 0.48 }, "-=0.28")
+        .from(".hero-presence__item", { y: 14, autoAlpha: 0, duration: 0.42, stagger: 0.08 }, "-=0.2")
         .from(".hero-actions", { y: 15, autoAlpha: 0, duration: 0.45 }, "-=0.24");
 
       gsap.utils.toArray<HTMLElement>(".reveal").forEach((element) => {
@@ -204,6 +239,10 @@ export function LandingPage() {
                 <span className="hero-title-mask"><span className="hero-title-line hero-title-line--accent">Obras que avançam.</span></span>
               </h1>
               <p className="hero-copy hero-animate">Soluções pré-moldadas para projetos residenciais, comerciais e industriais na Paraíba e no Rio Grande do Norte.</p>
+              <div className="hero-presence hero-animate" aria-label="Atuação e sedes da Blue Premoldados">
+                <div className="hero-presence__item"><MapPin aria-hidden="true" /><span>Atuação</span><strong>Paraíba e Rio Grande do Norte</strong></div>
+                <div className="hero-presence__item"><Building2 aria-hidden="true" /><span>Sedes</span><strong>Parnamirim/RN e Cabedelo/PB</strong></div>
+              </div>
               <div className="hero-actions hero-animate">
                 <a className="button button--yellow" href={whatsappHref()}>Solicitar orçamento <ArrowUpRight size={18} /></a>
                 <a className="button button--ghost" href="#solucoes">Conhecer soluções <ArrowDown size={18} /></a>
@@ -212,16 +251,26 @@ export function LandingPage() {
           </div>
         </section>
 
-        <section className="compact-intro" aria-label="Resumo da atuação">
-          <div className="shell compact-intro__grid stagger-group">
-            <div><Factory aria-hidden="true" /><span>Experiência</span><strong>Mais de 15 anos no setor</strong></div>
-            <div><Building2 aria-hidden="true" /><span>Construções</span><strong>Galpões, prédios e casas</strong></div>
-            <div><Blocks aria-hidden="true" /><span>Fabricação</span><strong>Peças e estruturas pré-moldadas</strong></div>
-            <div><MapPin aria-hidden="true" /><span>Atuação</span><strong>Paraíba e Rio Grande do Norte</strong></div>
+        <section className="solutions-overview section" id="solucoes" aria-labelledby="solutions-overview-title">
+          <div className="shell">
+            <div className="solutions-overview__heading">
+              <div><span className="eyebrow reveal">Nossas soluções</span><h2 id="solutions-overview-title" className="section-title reveal">Tudo o que sua obra<br />precisa para avançar.</h2></div>
+              <p className="reveal">Produtos, construções e serviços reunidos para atender projetos de diferentes escalas e necessidades.</p>
+            </div>
+            <div className="solutions-overview__grid stagger-group">
+              {solutionGroups.map(({ icon: Icon, ...group }, index) => (
+                <article key={group.title}>
+                  <div className="solutions-overview__card-top"><span>0{index + 1}</span><Icon aria-hidden="true" /></div>
+                  <h3>{group.title}</h3>
+                  <ul>{group.items.map((item) => <li key={item}><Check size={15} aria-hidden="true" />{item}</li>)}</ul>
+                  <a href="#contato">Solicitar orçamento <ArrowUpRight size={17} /></a>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
-        <section className="services section" id="solucoes" aria-labelledby="services-title">
+        <section className="services section" id="construcoes" aria-labelledby="services-title">
           <div className="shell">
             <div className="section-heading section-heading--compact">
               <div><span className="eyebrow reveal">Soluções</span><h2 id="services-title" className="section-title reveal">Estruturas para<br />diferentes projetos.</h2></div>
