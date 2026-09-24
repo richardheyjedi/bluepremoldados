@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
+import { WhatsAppIcon } from "./WhatsAppIcon";
 import { navigation, whatsappHref } from "@/lib/site";
 
 export function Header() {
@@ -33,7 +34,7 @@ export function Header() {
           <nav className="desktop-nav" aria-label="Navegação principal">
             {navigation.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}
           </nav>
-          <a className="header-cta" href={whatsappHref()}>Solicitar orçamento <ArrowUpRight size={16} aria-hidden="true" /></a>
+          <a className="header-cta" href={whatsappHref()} target="_blank" rel="noopener noreferrer"><WhatsAppIcon size={17} /> WhatsApp</a>
           <button type="button" className="menu-button" aria-label={open ? "Fechar menu" : "Abrir menu"} aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen((value) => !value)}>
             {open ? <X /> : <Menu />}
           </button>
@@ -44,7 +45,7 @@ export function Header() {
         <nav aria-label="Navegação mobile">
           {navigation.map((item, index) => <a key={item.href} href={item.href} onClick={close} tabIndex={open ? 0 : -1}><span>0{index + 1}</span> {item.label}</a>)}
         </nav>
-        <a className="button button--yellow" href={whatsappHref()} onClick={close} tabIndex={open ? 0 : -1}>Solicitar orçamento <ArrowUpRight size={18} /></a>
+        <a className="button button--yellow" href={whatsappHref()} target="_blank" rel="noopener noreferrer" onClick={close} tabIndex={open ? 0 : -1}><WhatsAppIcon size={19} /> Falar no WhatsApp</a>
       </div>
     </>
   );

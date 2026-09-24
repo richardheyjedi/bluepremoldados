@@ -3,7 +3,7 @@ export const siteConfig = {
   shortName: "Blue Premoldados",
   cnpj: "65.340.996/0001-20",
   region: "Paraíba e Rio Grande do Norte",
-  whatsapp: "", // Configurar no formato 5583999999999 quando o número oficial for fornecido.
+  whatsapp: "5584982007766",
   email: "", // Configurável.
   instagram: "", // Configurável.
   facebook: "", // Configurável.

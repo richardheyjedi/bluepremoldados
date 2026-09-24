@@ -32,6 +32,7 @@ import { Logo } from "./Logo";
 import { ContactForm } from "./ContactForm";
 import { Gallery } from "./Gallery";
 import { CompanyVideo } from "./CompanyVideo";
+import { WhatsAppIcon } from "./WhatsAppIcon";
 import { navigation, siteConfig, whatsappHref } from "@/lib/site";
 
 if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -244,7 +245,7 @@ export function LandingPage() {
                 <div className="hero-presence__item"><Building2 aria-hidden="true" /><span>Sedes</span><strong>Parnamirim/RN e Cabedelo/PB</strong></div>
               </div>
               <div className="hero-actions hero-animate">
-                <a className="button button--yellow" href={whatsappHref()}>Solicitar orçamento <ArrowUpRight size={18} /></a>
+                <a className="button button--yellow" href={whatsappHref()} target="_blank" rel="noopener noreferrer"><WhatsAppIcon size={19} /> Falar no WhatsApp</a>
                 <a className="button button--ghost" href="#solucoes">Conhecer soluções <ArrowDown size={18} /></a>
               </div>
             </div>
@@ -354,7 +355,7 @@ export function LandingPage() {
           <div className="footer__bottom"><span>Atuação: {siteConfig.region}</span><Link href="/politica-de-privacidade">Política de Privacidade</Link></div>
         </div>
       </footer>
-      <a className="floating-whatsapp" href={whatsappHref()} aria-label="Solicitar orçamento pelo WhatsApp"><MessageCircle /><span>Orçamento</span></a>
+      <a className="floating-whatsapp" href={whatsappHref()} target="_blank" rel="noopener noreferrer" aria-label="Falar com a Blue Premoldados pelo WhatsApp"><WhatsAppIcon /><span>WhatsApp</span></a>
     </div>
   );
 }
